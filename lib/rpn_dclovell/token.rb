@@ -16,12 +16,30 @@ module RpnDclovell
       new(:number, value)
     end
 
+    def self.command(command)
+      new(:command, command)
+    end
+    HELP = command('help').freeze
+    QUIT = command('quit').freeze
+
+    def self.error(origin)
+      new(:error, origin)
+    end
+
     def operator?
       type == :operator
     end
 
     def number?
       type == :number
+    end
+
+    def command?
+      type == :command
+    end
+
+    def error?
+      type == :error
     end
   end
 end
