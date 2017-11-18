@@ -7,5 +7,21 @@ module RpnDclovell
       @type = type
       @value = value
     end
+
+    def self.operator(operator)
+      new(:operator, operator)
+    end
+
+    def self.number(value)
+      new(:number, value)
+    end
+
+    def operator?
+      type == :operator
+    end
+
+    def number?
+      type == :number
+    end
   end
 end
