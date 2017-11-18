@@ -1,5 +1,7 @@
-require "bundler/setup"
-require "rpn_dclovell"
+require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start
+require 'rpn_dclovell'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
