@@ -58,4 +58,16 @@ RSpec.describe RpnDclovell::Lexer do
     expect(tokens.first.error?).to be true
     expect(tokens.first.value).to eq error
   end
+
+  it 'recognizes a sentence' do
+    tokens = @lexer.lex('21 42 33 * + q')
+    expect(tokens.length).to eq(6)
+    tokens[0..2].each do |token|
+      expect(token.number?).to eq true
+    end
+    tokens[3..4].each do |token|
+      expect(token.operator?).to eq true
+    end
+    expect(tokens.last).to eq(RpnDclovell::Token::QUIT)
+  end
 end
