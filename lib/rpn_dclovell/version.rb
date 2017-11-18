@@ -1,3 +1,3 @@
-module Rpn
+module RpnDclovell
   VERSION = "0.1.0"
 end
