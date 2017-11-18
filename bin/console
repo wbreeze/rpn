@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
-require "bundler/setup"
-require "rpn_dclovell"
+require 'bundler/setup'
+require 'rpn_dclovell'
 
-require "irb"
+require 'irb'
 IRB.start(__FILE__)

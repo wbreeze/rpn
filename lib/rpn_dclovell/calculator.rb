@@ -13,9 +13,8 @@ module RpnDclovell
       when :operator
         process_operator(token.value)
       else
-        raise ArgumentError.new(
+        raise ArgumentError,
           "Calculator lacks an operation for token type, #{token.type}"
-        )
       end
     end
 
@@ -26,9 +25,8 @@ module RpnDclovell
       when '+'
         @stack.pop + @stack.pop
       else
-        raise ArgumentError.new(
+        raise ArgumentError,
           "Calculator lacks an evaluator for operator, #{operator}"
-        )
       end
     end
   end
