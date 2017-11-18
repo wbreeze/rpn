@@ -11,11 +11,12 @@ module RpnDclovell
       when :number
         @stack.push(token.value)
       when :operator
-        process_operator(token.value)
+        @stack.push(process_operator(token.value))
       else
         raise ArgumentError,
           "Calculator lacks an operation for token type, #{token.type}"
       end
+      @stack.last
     end
 
     private

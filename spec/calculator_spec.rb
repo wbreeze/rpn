@@ -6,63 +6,92 @@ RSpec.describe RpnDclovell::Calculator do
   it 'computes 2, 3, + as 5' do
     @calc.accept(RpnDclovell::Token.number(2))
     @calc.accept(RpnDclovell::Token.number(3))
-    plus = RpnDclovell::Token.operator('+')
-    expect(@calc.accept(plus)).to eq(5)
+    operator = RpnDclovell::Token.operator('+')
+    expect(@calc.accept(operator)).to eq(5)
   end
 
   it 'computes 3, 5, + as 8' do
     @calc.accept(RpnDclovell::Token.number(3))
     @calc.accept(RpnDclovell::Token.number(5))
-    plus = RpnDclovell::Token.operator('+')
-    expect(@calc.accept(plus)).to eq(8)
+    operator = RpnDclovell::Token.operator('+')
+    expect(@calc.accept(operator)).to eq(8)
   end
 
   it 'computes 9, 1, - as 8' do
     @calc.accept(RpnDclovell::Token.number(9))
     @calc.accept(RpnDclovell::Token.number(1))
-    minus = RpnDclovell::Token.operator('-')
-    expect(@calc.accept(minus)).to eq(8)
+    operator = RpnDclovell::Token.operator('-')
+    expect(@calc.accept(operator)).to eq(8)
   end
 
   it 'computes 5, 3, - as 2' do
     @calc.accept(RpnDclovell::Token.number(5))
     @calc.accept(RpnDclovell::Token.number(3))
-    minus = RpnDclovell::Token.operator('-')
-    expect(@calc.accept(minus)).to eq(2)
+    operator = RpnDclovell::Token.operator('-')
+    expect(@calc.accept(operator)).to eq(2)
   end
 
   it 'computes -5, 3, - as -8' do
     @calc.accept(RpnDclovell::Token.number(-5))
     @calc.accept(RpnDclovell::Token.number(3))
-    minus = RpnDclovell::Token.operator('-')
-    expect(@calc.accept(minus)).to eq(-8)
+    operator = RpnDclovell::Token.operator('-')
+    expect(@calc.accept(operator)).to eq(-8)
   end
 
   it 'computes 2, 3, * as 6' do
     @calc.accept(RpnDclovell::Token.number(2))
     @calc.accept(RpnDclovell::Token.number(3))
-    times = RpnDclovell::Token.operator('*')
-    expect(@calc.accept(times)).to eq(6)
+    operator = RpnDclovell::Token.operator('*')
+    expect(@calc.accept(operator)).to eq(6)
   end
 
   it 'computes 3, 5, * as 15' do
     @calc.accept(RpnDclovell::Token.number(3))
     @calc.accept(RpnDclovell::Token.number(5))
-    times = RpnDclovell::Token.operator('*')
-    expect(@calc.accept(times)).to eq(15)
+    operator = RpnDclovell::Token.operator('*')
+    expect(@calc.accept(operator)).to eq(15)
   end
 
   it 'computes 10, 5, / as 2' do
     @calc.accept(RpnDclovell::Token.number(10))
     @calc.accept(RpnDclovell::Token.number(5))
-    divide = RpnDclovell::Token.operator('/')
-    expect(@calc.accept(divide)).to eq(2)
+    operator = RpnDclovell::Token.operator('/')
+    expect(@calc.accept(operator)).to eq(2)
   end
 
   it 'computes 5, 8, / as 0.625' do
     @calc.accept(RpnDclovell::Token.number(5))
     @calc.accept(RpnDclovell::Token.number(8))
-    divide = RpnDclovell::Token.operator('/')
-    expect(@calc.accept(divide)).to be_within(0.0001).of(0.625)
+    operator = RpnDclovell::Token.operator('/')
+    expect(@calc.accept(operator)).to be_within(0.0001).of(0.625)
+  end
+
+  context 'chained computations' do
+    it 'computes 5 9 1 - / as 0.625' do
+      @calc.accept(RpnDclovell::Token.number(5))
+      @calc.accept(RpnDclovell::Token.number(9))
+      @calc.accept(RpnDclovell::Token.number(1))
+      @calc.accept(RpnDclovell::Token.operator('-'))
+      operator = RpnDclovell::Token.operator('/')
+      expect(@calc.accept(operator)).to be_within(0.0001).of(0.625)
+    end
+
+    it 'computes -3 -2 * 5 + as 11' do
+      @calc.accept(RpnDclovell::Token.number(-3))
+      @calc.accept(RpnDclovell::Token.number(-2))
+      @calc.accept(RpnDclovell::Token.operator('*'))
+      @calc.accept(RpnDclovell::Token.number(5))
+      operator = RpnDclovell::Token.operator('+')
+      expect(@calc.accept(operator)).to eq(11)
+    end
+
+    it 'computes 5 8 + 13 - as 0' do
+      @calc.accept(RpnDclovell::Token.number(5))
+      @calc.accept(RpnDclovell::Token.number(8))
+      @calc.accept(RpnDclovell::Token.operator('+'))
+      @calc.accept(RpnDclovell::Token.number(13))
+      operator = RpnDclovell::Token.operator('-')
+      expect(@calc.accept(operator)).to eq(0)
+    end
   end
 end
