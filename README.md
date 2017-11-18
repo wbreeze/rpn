@@ -1,15 +1,11 @@
-# Rpn
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/rpn`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+# RPN
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rpn'
+gem 'rpn_dclovell'
 ```
 
 And then execute:
@@ -18,11 +14,22 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rpn
+    $ gem install rpn_dclovell
 
 ## Usage
 
-TODO: Write usage instructions here
+The gem installs a command, `rpn`
+
+```bash
+> gem install rpn_dclovell
+> rpn
+rpn=>
+```
+
+The command presents a prompt for input of expressions in prefix notation.
+
+ - Type 'h' or 'help' to get a summary of current capabilities.
+ - Type 'q' or 'bye', or send EOF (`^d`, `ctrl-d`) to exit.
 
 ## Development
 
@@ -32,4 +39,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/rpn.
+Bug reports and pull requests are welcome on GitHub at https://github.com/wbreeze/rpn.

@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
+git_source(:github) {|repo_name| "https://github.com/wbreeze/rpn" }
 
-# Specify your gem's dependencies in rpn.gemspec
+# Find and maintain the gem dependencies in rpn_dclovell.gemspec
 gemspec
