@@ -1,5 +1,6 @@
 require 'rpn_dclovell/version'
 require 'rpn_dclovell/token'
+require 'rpn_dclovell/calculator'
 
 module RpnDclovell
   class CLI
