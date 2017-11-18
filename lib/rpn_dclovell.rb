@@ -1,4 +1,5 @@
-require "rpn_dclovell/version"
+require 'rpn_dclovell/version'
+require 'rpn_dclovell/token'
 
 module RpnDclovell
   class CLI
