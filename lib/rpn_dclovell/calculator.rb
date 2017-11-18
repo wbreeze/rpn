@@ -21,6 +21,7 @@ module RpnDclovell
 
     private
 
+    # rubocop:disable Metrics/AbcSize
     def process_operator(operator)
       case operator
       when '+'
