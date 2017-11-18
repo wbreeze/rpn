@@ -24,6 +24,16 @@ module RpnDclovell
       case operator
       when '+'
         @stack.pop + @stack.pop
+      when '*'
+        @stack.pop * @stack.pop
+      when '-'
+        decrement = @stack.pop
+        base = @stack.pop
+        base - decrement
+      when '/'
+        denominator = @stack.pop
+        numerator = @stack.pop
+        numerator.to_f / denominator
       else
         raise ArgumentError,
           "Calculator lacks an evaluator for operator, #{operator}"
