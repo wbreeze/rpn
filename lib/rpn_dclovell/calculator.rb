@@ -14,7 +14,7 @@ module RpnDclovell
         @stack.push(process_operator(token.value))
       else
         raise ArgumentError,
-          "Calculator lacks an operation for token type, #{token.type}"
+          "Calculator lacks an operation for token type, \"#{token.type}\""
       end
       @stack.last
     end
@@ -26,7 +26,7 @@ module RpnDclovell
         value
       else
         raise ArgumentError,
-          "Supplied value, #{value} is not a number"
+          "Supplied value, \"#{value}\" is not a number"
       end
     end
 
@@ -47,7 +47,7 @@ module RpnDclovell
         numerator.to_f / denominator
       else
         raise ArgumentError,
-          "Calculator lacks an evaluator for operator, #{operator}"
+          "Calculator lacks an evaluator for operator, \"#{operator}\""
       end
     end
   end
