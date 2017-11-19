@@ -93,5 +93,23 @@ RSpec.describe RpnDclovell::Calculator do
       operator = RpnDclovell::Token.operator('-')
       expect(@calc.accept(operator)).to eq(0)
     end
+
+    it 'raises exception given an unknown operator' do
+      expect {
+        @calc.accept(RpnDclovell::Token.operator('©'))
+      }.to raise_error(ArgumentError, /lacks an evaluator/)
+    end
+
+    it 'raises exception given an invalid number' do
+      expect {
+        @calc.accept(RpnDclovell::Token.number('abc'))
+      }.to raise_error(ArgumentError, /not a number/)
+    end
+
+    it 'raises exception given invalid token type' do
+      expect {
+        @calc.accept(RpnDclovell::Token::HELP)
+      }.to raise_error(ArgumentError, /operation for token type/)
+    end
   end
 end

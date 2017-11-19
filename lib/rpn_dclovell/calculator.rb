@@ -9,7 +9,7 @@ module RpnDclovell
     def accept(token)
       case token.type
       when :number
-        @stack.push(token.value)
+        @stack.push(process_number(token.value))
       when :operator
         @stack.push(process_operator(token.value))
       else
@@ -20,6 +20,15 @@ module RpnDclovell
     end
 
     private
+
+    def process_number(value)
+      if value.is_a? Numeric
+        value
+      else
+        raise ArgumentError,
+          "Supplied value, #{value} is not a number"
+      end
+    end
 
     # rubocop:disable Metrics/AbcSize
     def process_operator(operator)
