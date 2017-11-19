@@ -30,7 +30,7 @@ module RpnDclovell
       elsif token.operator? || token.number?
         begin
           @last_result = @computer.accept(token)
-        rescue => exception
+        rescue StandardError => exception
           @interactor.show_error(exception.message)
         end
       elsif token.error?

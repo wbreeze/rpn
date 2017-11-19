@@ -30,10 +30,11 @@ module RpnDclovell
       end
     end
 
+    # rubocop:disable Style/GuardClause
     def stack_check(operator)
-      raise(ArgumentError,
-        "too few operands for operator \"#{operator}\""
-      ) if @stack.length < 2
+      if @stack.length < 2
+        raise(ArgumentError, "too few operands for operator \"#{operator}\"")
+      end
     end
 
     # rubocop:disable Metrics/AbcSize
