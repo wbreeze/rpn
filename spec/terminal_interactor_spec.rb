@@ -80,4 +80,13 @@ RSpec.describe RpnDclovell::TerminalInteractor do
     expect(outputs.length).to eq 1
     expect(outputs.first).to match('So long and thank you')
   end
+
+  it 'displays errors' do
+    message = 'Operator not recognized'
+    @ti.show_error(message)
+    outputs = @ioe.output_list
+    expect(outputs.length).to eq 1
+    expect(outputs.first).to match('There was an error')
+    expect(outputs.first).to match(message)
+  end
 end
