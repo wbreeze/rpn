@@ -1,8 +1,6 @@
 require 'rpn_dclovell/version'
-require 'rpn_dclovell/token'
-require 'rpn_dclovell/calculator'
 require 'rpn_dclovell/lexer'
-require 'rpn_dclovell/terminal_interactor'
+require 'rpn_dclovell/cli_controller'
 
 module RpnDclovell
   # Execute a command line interpeter for the calculator
