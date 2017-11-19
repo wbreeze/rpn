@@ -57,16 +57,17 @@ module RpnDclovell
           rpn=> 3 *
                   15
           rpn=> 3 /
-                  5
+                  5.0
           rpn=> 3 -
-                  2
+                  2.0
           rpn=> q
+                  2.0
 
       HELP
     end
 
     def goodbye
-      output.puts('So long and thank you for all the fish.')
+      output.puts("\nSo long and thank you for all the fish.\n")
     end
   end
 end
