@@ -67,7 +67,7 @@ module RpnDclovell
     end
 
     def goodbye
-      output.puts("\nSo long and thank you for all the fish.\n")
+      output.write("\n  So long and thank you for all the fish.\n\n")
     end
   end
 end
