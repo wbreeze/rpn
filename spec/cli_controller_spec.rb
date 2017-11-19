@@ -55,14 +55,32 @@ RSpec.describe RpnDclovell::CliController do
   end
 
   it 'announces and recovers from error token' do
+    bad_input = 'bad'
     expect(@terminal).to receive(:prompt_input).and_return(
-      [RpnDclovell::Token.error('input not recognized')]
+      [RpnDclovell::Token.error(bad_input)]
     )
-    expect(@terminal).to receive(:show_error)
+    expect(@terminal).to receive(:show_error).with(
+      "input \"#{bad_input}\" not recognized"
+    )
     expect(@terminal).to receive(:prompt_input).and_return(
       [RpnDclovell::Token::QUIT]
     )
     expect(@terminal).to receive(:display_result).twice
+    @controller.serve
+  end
+
+  it 'announces and recovers from empty stack error' do
+    op = '+'
+    token_list = [
+      RpnDclovell::Token.number(7),
+      RpnDclovell::Token.operator(op),
+      RpnDclovell::Token::QUIT
+    ]
+    expect(@terminal).to receive(:prompt_input).and_return(token_list)
+    expect(@terminal).to receive(:show_error).with(
+      "too few operands for operator \"#{op}\""
+    )
+    expect(@terminal).to receive(:display_result)
     @controller.serve
   end
 end

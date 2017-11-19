@@ -30,8 +30,15 @@ module RpnDclovell
       end
     end
 
+    def stack_check(operator)
+      raise(ArgumentError,
+        "too few operands for operator \"#{operator}\""
+      ) if @stack.length < 2
+    end
+
     # rubocop:disable Metrics/AbcSize
     def process_operator(operator)
+      stack_check(operator)
       case operator
       when '+'
         @stack.pop + @stack.pop

@@ -96,6 +96,8 @@ RSpec.describe RpnDclovell::Calculator do
 
     it 'raises exception given an unknown operator' do
       expect {
+        @calc.accept(RpnDclovell::Token.number(5))
+        @calc.accept(RpnDclovell::Token.number(8))
         @calc.accept(RpnDclovell::Token.operator('©'))
       }.to raise_error(ArgumentError, /lacks an evaluator/)
     end
@@ -110,6 +112,15 @@ RSpec.describe RpnDclovell::Calculator do
       expect {
         @calc.accept(RpnDclovell::Token::HELP)
       }.to raise_error(ArgumentError, /operation for token type/)
+    end
+
+    it 'raises exception given insufficient data' do
+      op = '+'
+      expect {
+        @calc.accept(RpnDclovell::Token.operator(op))
+      }.to raise_error(ArgumentError,
+        "too few operands for operator \"#{op}\""
+      )
     end
   end
 end

@@ -34,7 +34,7 @@ module RpnDclovell
           @interactor.show_error(exception.message)
         end
       elsif token.error?
-        @interactor.show_error(token.value)
+        @interactor.show_error("input \"#{token.value}\" not recognized")
       end
       token == Token::QUIT
     end
