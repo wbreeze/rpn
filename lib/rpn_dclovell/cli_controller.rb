@@ -28,7 +28,13 @@ module RpnDclovell
       if token == Token::HELP
         @interactor.show_help
       elsif token.operator? || token.number?
-        @last_result = @computer.accept(token)
+        begin
+          @last_result = @computer.accept(token)
+        rescue => exception
+          @interactor.show_error(exception.message)
+        end
+      elsif token.error?
+        @interactor.show_error(token.value)
       end
       token == Token::QUIT
     end

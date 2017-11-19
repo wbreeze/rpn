@@ -3,6 +3,8 @@ RSpec.describe RpnDclovell::CliController do
     @terminal = instance_double(RpnDclovell::TerminalInteractor)
     @calculator = RpnDclovell::Calculator.new
     @controller = RpnDclovell::CliController.new(@terminal, @calculator)
+    expect(@terminal).to receive(:greeting)
+    expect(@terminal).to receive(:goodbye)
   end
 
   it 'computes a sum, prints it, and quits' do
@@ -12,23 +14,55 @@ RSpec.describe RpnDclovell::CliController do
       RpnDclovell::Token.operator('+'),
       RpnDclovell::Token::QUIT
     ]
-    expect(@terminal).to receive(:greeting)
     expect(@terminal).to receive(:prompt_input).and_return(token_list)
     expect(@terminal).to receive(:display_result).with(5)
-    expect(@terminal).to receive(:goodbye)
     @controller.serve
   end
 
-  it 'provides help and says goodbye' do
+  it 'provides help' do
     token_list = [
       RpnDclovell::Token::HELP,
       RpnDclovell::Token::QUIT
     ]
-    expect(@terminal).to receive(:greeting)
     expect(@terminal).to receive(:prompt_input).and_return(token_list)
     expect(@terminal).to receive(:show_help)
     expect(@terminal).to receive(:display_result)
-    expect(@terminal).to receive(:goodbye)
+    @controller.serve
+  end
+
+  it 'announces and recovers from bad number token' do
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token.number('lexer mistake')]
+    )
+    expect(@terminal).to receive(:show_error)
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token::QUIT]
+    )
+    expect(@terminal).to receive(:display_result).twice
+    @controller.serve
+  end
+
+  it 'announces and recovers from bad operator token' do
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token.operator('lexer mistake')]
+    )
+    expect(@terminal).to receive(:show_error)
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token::QUIT]
+    )
+    expect(@terminal).to receive(:display_result).twice
+    @controller.serve
+  end
+
+  it 'announces and recovers from error token' do
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token.error('input not recognized')]
+    )
+    expect(@terminal).to receive(:show_error)
+    expect(@terminal).to receive(:prompt_input).and_return(
+      [RpnDclovell::Token::QUIT]
+    )
+    expect(@terminal).to receive(:display_result).twice
     @controller.serve
   end
 end
