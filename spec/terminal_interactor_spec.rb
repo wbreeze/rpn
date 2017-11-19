@@ -78,7 +78,7 @@ RSpec.describe RpnDclovell::TerminalInteractor do
     @ti.goodbye
     outputs = @ioe.output_list
     expect(outputs.length).to eq 1
-    expect(outputs.first).to match('So long and thank you')
+    expect(outputs.first).to match('Goodbye')
   end
 
   it 'displays errors' do

@@ -67,7 +67,7 @@ module RpnDclovell
     end
 
     def goodbye
-      output.write("\n  So long and thank you for all the fish.\n\n")
+      output.write("\n  Goodbye.\n\n")
     end
 
     def show_error(message)
