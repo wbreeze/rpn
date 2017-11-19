@@ -1,8 +1,7 @@
 require 'rpn_dclovell/token'
-require 'rpn_dclovell/calculator'
-require 'rpn_dclovell/terminal_interactor'
 
 module RpnDclovell
+  # Coordinate activity of an interface with the calculator
   class CliController
     def initialize(interactor, computer)
       @interactor = interactor
@@ -12,13 +11,14 @@ module RpnDclovell
 
     def serve
       @interactor.greeting
-      begin
+      loop do
         tokens = @interactor.prompt_input
         quit_seen = tokens.reduce(false) do |quit, token|
-          quit ||= process_token(token) unless quit
+          quit || process_token(token)
         end
         @interactor.display_result(@last_result)
-      end until quit_seen
+        break if quit_seen
+      end
       @interactor.goodbye
     end
 

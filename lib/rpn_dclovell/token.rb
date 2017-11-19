@@ -9,7 +9,7 @@ module RpnDclovell
     end
 
     def ==(other)
-      other.is_a?(Token) && o.type == type && o.value == value
+      other.is_a?(Token) && other.type == type && other.value == value
     end
 
     def hash

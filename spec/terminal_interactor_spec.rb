@@ -60,7 +60,6 @@ RSpec.describe RpnDclovell::TerminalInteractor do
     expect(outputs.first).to match('rpn=> ')
   end
 
-
   it 'shows help' do
     @ti.show_help
     outputs = @ioe.output_list

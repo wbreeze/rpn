@@ -8,7 +8,7 @@ Layout/MultilineMethodCallBraceLayout:
     - 'spec/**/*_spec.rb'
 Metrics/MethodLength:
   Max: 20
-Style/BlockLength:
+Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
     - 'spec/**/*_spec.rb'
