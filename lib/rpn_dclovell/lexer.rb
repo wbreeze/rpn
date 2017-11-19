@@ -30,7 +30,7 @@ module RpnDclovell
     def try_command(word)
       if word =~ /^h/i
         Token::HELP
-      elsif word =~ /^q/i
+      elsif word =~ /^q|bye/i
         Token::QUIT
       end
     end

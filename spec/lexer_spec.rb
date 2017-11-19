@@ -43,6 +43,13 @@ RSpec.describe RpnDclovell::Lexer do
       expect(tokens.first).to eq(RpnDclovell::Token::QUIT)
     end
 
+    it 'for bye' do
+      tokens = @lexer.lex('bye')
+      expect(tokens.length).to eq 1
+      expect(tokens.first.command?).to be true
+      expect(tokens.first).to eq(RpnDclovell::Token::QUIT)
+    end
+
     it 'for help' do
       tokens = @lexer.lex('h')
       expect(tokens.length).to eq 1
