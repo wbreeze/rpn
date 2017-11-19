@@ -1,9 +1,12 @@
+require 'rpn_dclovell/lexer'
+
 module RpnDclovell
   # Interact with a person on a terminal command line
   class TerminalInteractor
     attr_accessor :input, :output
 
-    def initialize(input = $stdin, output = $stdout)
+    def initialize(lexer, input = $stdin, output = $stdout)
+      @lexer = lexer
       self.input = input
       self.output = output
     end
@@ -19,7 +22,7 @@ module RpnDclovell
 
     def prompt_input
       output.write('rpn=> ')
-      input.eof? ? 'q' : input.gets
+      input.eof? ? [Token::QUIT] : @lexer.lex(input.gets)
     end
 
     def display_result(value)

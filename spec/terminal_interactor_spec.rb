@@ -26,23 +26,30 @@ RSpec.describe RpnDclovell::TerminalInteractor do
 
   before :example do
     @ioe = IOEmulator.new
-    @ti = RpnDclovell::TerminalInteractor.new(@ioe, @ioe)
+    lexer = RpnDclovell::Lexer.new
+    @ti = RpnDclovell::TerminalInteractor.new(lexer, @ioe, @ioe)
   end
 
   it 'captures input' do
     sentence = '2 3 + q'
     @ioe.input_list = [sentence]
-    expect(@ti.prompt_input).to eq(sentence)
+    expected_tokens = [
+      RpnDclovell::Token.number(2),
+      RpnDclovell::Token.number(3),
+      RpnDclovell::Token.operator('+'),
+      RpnDclovell::Token::QUIT
+    ]
+    expect(@ti.prompt_input).to eq(expected_tokens)
   end
 
   it 'captures quit' do
     @ioe.input_list = %w[q]
-    expect(@ti.prompt_input).to eq 'q'
+    expect(@ti.prompt_input).to eq([RpnDclovell::Token::QUIT])
   end
 
   it 'captures eof' do
     @ioe.input_list = []
-    expect(@ti.prompt_input).to eq 'q'
+    expect(@ti.prompt_input).to eq([RpnDclovell::Token::QUIT])
   end
 
   it 'prompts' do

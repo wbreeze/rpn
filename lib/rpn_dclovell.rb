@@ -1,5 +1,4 @@
 require 'rpn_dclovell/version'
-require 'rpn_dclovell/lexer'
 require 'rpn_dclovell/cli_controller'
 
 module RpnDclovell

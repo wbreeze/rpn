@@ -8,6 +8,14 @@ module RpnDclovell
       @value = value
     end
 
+    def ==(other)
+      other.is_a?(Token) && o.type == type && o.value == value
+    end
+
+    def hash
+      { type: type, value: value }.hash
+    end
+
     def self.operator(operator)
       new(:operator, operator)
     end
