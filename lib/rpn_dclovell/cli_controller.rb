@@ -28,15 +28,17 @@ module RpnDclovell
       if token == Token::HELP
         @interactor.show_help
       elsif token.operator? || token.number?
-        begin
-          @last_result = @computer.accept(token)
-        rescue StandardError => exception
-          @interactor.show_error(exception.message)
-        end
+        compute_with(token)
       elsif token.error?
         @interactor.show_error("input \"#{token.value}\" not recognized")
       end
       token == Token::QUIT
+    end
+
+    def compute_with(token)
+      @last_result = @computer.accept(token)
+    rescue StandardError => exception
+      @interactor.show_error(exception.message)
     end
   end
 end
