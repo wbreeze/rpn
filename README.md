@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/wbreeze/rpn.svg?branch=master)](https://travis-ci.org/wbreeze/rpn)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3c33f1e12008be62024e/maintainability)](https://codeclimate.com/github/wbreeze/rpn/maintainability)
+
 # RPN
 
 A command-line reverse polish notation (RPN) calculator written in Ruby
