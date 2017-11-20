@@ -7,10 +7,9 @@ module RpnDclovell
     end
 
     def accept(token)
-      case token.type
-      when :number
+      if token.number?
         @stack.push(process_number(token.value))
-      when :operator
+      elsif token.operator?
         @stack.push(process_operator(token.value))
       else
         raise ArgumentError,
