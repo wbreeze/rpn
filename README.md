@@ -7,27 +7,32 @@ A command-line reverse polish notation (RPN) calculator written in Ruby
 
 ## Installation
 
-Add this line to your application's Gemfile:
+This gem is not published. In order to run it, you will need to clone
+this repository as if you were going to work on it. Here are the steps
+to run the program, assuming that you already have installed
+[Ruby](https://www.ruby-lang.org/en/documentation/installation/),
+[RubyGems](https://rubygems.org/pages/download),
+[Bundler](http://bundler.io/), and
+[git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git).
 
-```ruby
-gem 'rpn_dclovell'
+```bash
+> git clone git@github.com:wbreeze/rpn.git
+> cd rpn
+> bundle install
+> rake install
+> rpn
 ```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install rpn_dclovell
 
 ## Usage
 
 The gem installs a command, `rpn`
 
 ```bash
-> gem install rpn_dclovell
 > rpn
+
+  Welcome. Type "q" to quit, "h" for help.
+  I always wait politely for you to press the enter key.
+
 rpn=>
 ```
 
@@ -72,14 +77,15 @@ through the `TerminalInteractor`.
 
 It is relatively simple to add operators by allowing them in the `Lexer` and
 recognizing them in the `Calculator`.  With growth in the number of
-recognized operators, will come growth in the `process_operator` method of
+recognized operators will come growth in the `process_operator` method of
 the `Calculator` class. At some point, a table lookup might begin to look
 worthwhile and attractive.
 
-Adding an operator that requires other than two operands will require a
-change to the `stack_check` method in the `Calculator` class. That method
+The `stack_check` method in `Calculator`
 checks for sufficient operands before attempting any operation.
-That too might provide motivation for refactoring with table lookup.
+Adding an operator that requires other than two operands will require a
+change to that method.
+That change might also provide motivation for refactoring with table lookup.
 
 ## Contributing
 
