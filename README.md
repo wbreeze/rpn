@@ -39,7 +39,7 @@ rpn=>
 The command presents a prompt for input of expressions in prefix notation.
 
  - Type 'h' or 'help' to get a summary of current capabilities.
- - Type 'q' or 'bye', or send EOF (`^d`, `ctrl-d`) to exit.
+ - Type 'q' or 'bye', or send EOF (`^d` or `Ctrl-d`) to exit.
 
 ## Development
 
@@ -69,7 +69,7 @@ a stack-based interpreter. It pushes operands. Given an operator, it
 combines operands using the specified operation and pushes the result.
 
 - The `CliController` class uses an instance of `TerminalInteractor` to
-drive input and response. It uses and instance of `Calculator` to provide
+drive input and response. It uses an instance of `Calculator` to provide
 the key computational function. It detects errors and communicates them
 through the `TerminalInteractor`.
 
