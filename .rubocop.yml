@@ -12,7 +12,7 @@ Metrics/BlockLength:
   Exclude:
     - 'Rakefile'
     - 'spec/**/*_spec.rb'
-Style/BlockDelimeters:
+Style/BlockDelimiters:
   EnforcedStyle: braces_for_chaining
 Style/TernaryParentheses:
   EnforcedStyle: require_parentheses_when_complex

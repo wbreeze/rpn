@@ -1,4 +1,3 @@
-# rubocop:disable Style/BlockDelimiters
 RSpec.describe RpnDclovell::Calculator do
   before :example do
     @calc = RpnDclovell::Calculator.new
